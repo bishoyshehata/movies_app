@@ -1,0 +1,2 @@
+G:/GitHub/movies_app/movies_app/android/app/.cxx/Debug/614kk4s7/x86_64/CMakeFiles/edit_cache.dir
+G:/GitHub/movies_app/movies_app/android/app/.cxx/Debug/614kk4s7/x86_64/CMakeFiles/rebuild_cache.dir
