@@ -7,7 +7,7 @@ class Movie extends Equatable{
   final String title;
   final String overview;
   final String posterPath;
-  final double voteAverage;
+  final num voteAverage;
   final String releaseDate;
 
  const Movie({

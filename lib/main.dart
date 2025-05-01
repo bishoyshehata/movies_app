@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/movies/data/datasource/movie_remote_data_source.dart';
+import 'package:movies_app/movies/data/repository/movies_repository.dart';
+import 'package:movies_app/movies/domain/repository/base_movies_repository.dart';
+
+import 'movies/domain/usecases/get_now_playing_movies.dart';
 
 
-void main() {
+void main()async {
   runApp(const MyApp());
 }
 
