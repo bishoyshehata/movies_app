@@ -7,8 +7,8 @@ const MovieEvent();
   List<Object> get props => [];
 }
 
-class getNowPlayingMoviesEvent extends MovieEvent {}
+class GetNowPlayingMoviesEvent extends MovieEvent {}
 
-class getPopularMoviesEvent extends MovieEvent {}
+class GetPopularMoviesEvent extends MovieEvent {}
 
-class getTopRatedMoviesEvent extends MovieEvent {}
+class GetTopRatedMoviesEvent extends MovieEvent {}
