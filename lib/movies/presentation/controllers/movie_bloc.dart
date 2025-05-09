@@ -12,8 +12,8 @@ class MoviesBloc extends Bloc<MovieEvent,MovieState> {
       // get data of nowPlayingMovies
       final result = await getNowPlayingMoviesUseCase.execute();
       emit(const MovieState(requestState: RequestState.loaded));
-      result.fold((error)=> emit( MovieState(nowPlayingMessage: error.message , requestState: RequestState.error)), (data){
-        return emit(MovieState(nowPlayingMovies: data , requestState: RequestState.loaded));
+      result.fold((error)=> emit( MovieState(nowPlayingMessage: error.message , requestState: RequestState.error)),
+              (data){ return emit(MovieState(nowPlayingMovies: data , requestState: RequestState.loaded));
       });
     },);
 
