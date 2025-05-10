@@ -14,7 +14,7 @@ abstract class BaseMoviesRepository {
 
 
   Future<Either<Failure , MovieDetails>>  getMoviesDetails(MovieDetailsParameters parameters);
-  Future<Either<Failure ,Recommendations>>  getMovieRecommendation(MovieDetailsParameters parameters);
+  Future<Either<Failure ,List<Recommendations>>>  getMovieRecommendation(MovieDetailsParameters parameters);
 
 }
 

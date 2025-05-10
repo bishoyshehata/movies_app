@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:movies_app/movies/domain/entities/geners.dart';
 
-abstract class MovieDetails extends Equatable {
+class MovieDetails extends Equatable {
   final String backdropPath;
   final List<Genres> genres;
-  final String id;
+  final int id;
   final String overview;
-  final String runtime;
-  final String voteAverage;
+  final int runtime;
+  final double voteAverage;
   final String title;
   final String releaseDate;
 

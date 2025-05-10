@@ -14,14 +14,14 @@ class MovieDetailsModel extends MovieDetails {
     required super.releaseDate,
   });
 
-  factory MovieDetailsModel.fromjson(Map<String, dynamic> json) =>
+  factory MovieDetailsModel.fromJson(Map<String, dynamic> json) =>
       MovieDetailsModel(
         backdropPath: json['backdrop_path'],
-        genres: List<GenresModel>.from(json['genres'].map((x)=>GenresModel.fromjson(x))),
+        genres: List<GenresModel>.from(json['genres'].map((x)=>GenresModel.fromJson(x))),
         id: json['id'],
         overview: json['overview'],
         runtime: json['runtime'],
-        voteAverage: json['vote_average'],
+        voteAverage: json['vote_average'].toDouble(),
         title: json['title'],
         releaseDate: json['release_date'],
       );

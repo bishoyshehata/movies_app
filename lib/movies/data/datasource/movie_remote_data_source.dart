@@ -14,7 +14,7 @@ abstract class BaseMovieRemoteDataSource {
   Future<List<MovieModel>> getPopularMovies();
   Future<List<MovieModel>> getTopRatedMovies();
   Future<MovieDetailsModel> getMoviesDetails(MovieDetailsParameters parameters);
-  Future<MovieRecommendationsModel> getMovieRecommendation(MovieDetailsParameters parameters);
+  Future<List<MovieRecommendationsModel>> getMovieRecommendation(MovieDetailsParameters parameters);
 
 }
 
@@ -30,7 +30,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
     if(response.statusCode == 200){
       return List<MovieModel>.from((response.data['results'] as List).map((e)=> MovieModel.fromJson(e)));
     }
-    throw ServerException(errorMessageModel: ErrorMessageModel.fromjson(response.data));
+    throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
   }
   // getPopularMovies
   @override
@@ -41,7 +41,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
     if(response.statusCode == 200){
       return List<MovieModel>.from((response.data['results'] as List).map((e)=> MovieModel.fromJson(e)));
     }
-    throw ServerException(errorMessageModel: ErrorMessageModel.fromjson(response.data));
+    throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
 
   }
 // getTopRatedMovies
@@ -53,7 +53,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
     if(response.statusCode == 200){
       return List<MovieModel>.from((response.data['results'] as List).map((e)=> MovieModel.fromJson(e)));
     }
-    throw ServerException(errorMessageModel: ErrorMessageModel.fromjson(response.data));
+    throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
 
   }
 
@@ -61,13 +61,14 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
 // MovieRecommendations
 
   @override
-  Future<MovieRecommendationsModel> getMovieRecommendation(MovieDetailsParameters parameters)async {
+  Future<List<MovieRecommendationsModel>> getMovieRecommendation(MovieDetailsParameters parameters)async {
     final response = await Dio().get(ApiConstants.movieRecommendationPath(parameters.movieId));
 
     if(response.statusCode == 200){
-      return MovieRecommendationsModel.fromjson(response.data);
+      return List<MovieRecommendationsModel>.from((response.data['results'] as List).map((e)=> MovieRecommendationsModel.fromJson(e)));
+
     }
-    throw ServerException(errorMessageModel: ErrorMessageModel.fromjson(response.data));
+    throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
 
   }
 // getMovieDetails
@@ -77,9 +78,9 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
     final response = await Dio().get(ApiConstants.movieDetailsPath(parameters.movieId));
 
     if(response.statusCode == 200){
-      return MovieDetailsModel.fromjson(response.data);
+      return MovieDetailsModel.fromJson(response.data);
     }
-    throw ServerException(errorMessageModel: ErrorMessageModel.fromjson(response.data));
+    throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data));
 
   }
 }

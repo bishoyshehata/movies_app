@@ -58,7 +58,7 @@ class MoviesRepository implements BaseMoviesRepository {
   }
 
   @override
-  Future<Either<Failure, Recommendations>> getMovieRecommendation(MovieDetailsParameters parameters)async {
+  Future<Either<Failure, List<Recommendations>>> getMovieRecommendation(MovieDetailsParameters parameters)async {
     final result = await movieRemoteDataSource.getMovieRecommendation(parameters);
     try {
       return Right(result);
