@@ -7,7 +7,6 @@ import 'package:movies_app/core/utils/enums.dart';
 import 'package:movies_app/movies/presentation/controllers/movie_bloc.dart';
 import 'package:movies_app/movies/presentation/controllers/movie_state.dart';
 import '../../../core/network/api_constants.dart';
-import '../../../core/utils/dummy.dart';
 
 class NowPlayingComponent extends StatelessWidget {
   const NowPlayingComponent({super.key});
@@ -15,14 +14,14 @@ class NowPlayingComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  BlocBuilder<MoviesBloc,MovieState>(
+      buildWhen: (previous, current) => previous.nowPlayingState != current.nowPlayingState,
       builder: (context, state) {
-        switch(state.requestState) {
+        switch(state.nowPlayingState) {
 
           case RequestState.loading:
             return  SizedBox(
                 height: 400.0,
                 child: Center(child: CircularProgressIndicator(color: Colors.white,),));
-
           case RequestState.loaded:
             return  FadeIn(
               duration: const Duration(milliseconds: 500),

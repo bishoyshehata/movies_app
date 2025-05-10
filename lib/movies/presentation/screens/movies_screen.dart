@@ -1,27 +1,20 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_app/core/network/api_constants.dart';
 import 'package:movies_app/movies/presentation/components/popular_component.dart';
 import 'package:movies_app/movies/presentation/components/top_rated_component.dart';
 import 'package:movies_app/movies/presentation/controllers/movie_bloc.dart';
 import 'package:movies_app/movies/presentation/controllers/movie_event.dart';
-import 'package:shimmer/shimmer.dart';
-
 import '../../../core/services/services_locator.dart';
-import '../../../core/utils/dummy.dart';
 import '../components/now_playing_component.dart';
 
 class MainMoviesScreen extends StatelessWidget {
-  const MainMoviesScreen({Key? key}) : super(key: key);
+  const MainMoviesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<MoviesBloc>()..add(GetNowPlayingMoviesEvent()),
+      create: (context) => sl<MoviesBloc>()..add(GetNowPlayingMoviesEvent())..add(GetPopularMoviesEvent())..add(GetTopRatedMoviesEvent()) ,
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         body: SingleChildScrollView(
