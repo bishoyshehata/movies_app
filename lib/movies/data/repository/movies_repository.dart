@@ -2,8 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:movies_app/core/error/exceptions.dart';
 import 'package:movies_app/core/error/failure.dart';
 import 'package:movies_app/movies/data/datasource/movie_remote_data_source.dart';
+import 'package:movies_app/movies/data/models/movie_details_model.dart';
 import 'package:movies_app/movies/data/models/movie_model.dart';
+import 'package:movies_app/movies/data/models/movie_recommendations_model.dart';
+import 'package:movies_app/movies/domain/entities/movie_details.dart';
+import 'package:movies_app/movies/domain/entities/recommendation.dart';
 import 'package:movies_app/movies/domain/repository/base_movies_repository.dart';
+import 'package:movies_app/movies/domain/usecases/get_movie_details.dart';
 
 class MoviesRepository implements BaseMoviesRepository {
 
@@ -42,4 +47,24 @@ class MoviesRepository implements BaseMoviesRepository {
     }
   }
 
-}
+  @override
+  Future<Either<Failure, MovieDetails>> getMoviesDetails(MovieDetailsParameters parameters) async{
+    final result = await movieRemoteDataSource.getMoviesDetails(parameters);
+    try {
+      return Right(result);
+    }on ServerException catch (failur){
+      return Left(ServerFailure(failur.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Recommendations>> getMovieRecommendation(MovieDetailsParameters parameters)async {
+    final result = await movieRemoteDataSource.getMovieRecommendation(parameters);
+    try {
+      return Right(result);
+    }on ServerException catch (failur){
+      return Left(ServerFailure(failur.errorMessageModel.statusMessage));
+    }
+
+  }
+  }
