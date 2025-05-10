@@ -4,12 +4,14 @@ import 'package:movies_app/core/error/failure.dart';
 import 'package:movies_app/movies/domain/entities/Movie.dart';
 import 'package:movies_app/movies/domain/repository/base_movies_repository.dart';
 
-class GetTopRatedMoviesUseCase {
+import '../../../core/base_usecase/base_usecase.dart';
+
+class GetTopRatedMoviesUseCase extends BaseUseCase<List<Movie>>{
   final BaseMoviesRepository moviesRepository ;
 
   GetTopRatedMoviesUseCase(this.moviesRepository);
-
-  Future<Either<Failure , List<Movie>>>  execute() async {
+  @override
+  Future<Either<Failure , List<Movie>>>  call() async {
     return await moviesRepository.getTopRatedMovies();
   }
 
